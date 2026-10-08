@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Encodage des caractères (pour afficher correctement les accents) -->
+  <meta charset="UTF-8">
+
+  <!-- Indispensable pour le responsive : adapte la page à la largeur de l'écran -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Titre affiché dans l'onglet du navigateur -->
+  <title>Montségur – Site officiel</title>
+
+  <!-- Résumé de la page pour les moteurs de recherche -->
+  <meta name="description" content="Site officiel de Montségur (Ariège) : château inscrit à l'UNESCO, Grand Site de France, village classé et nature préservée.">
+
+  <!-- Polices Google Fonts, proches de celles du site d'origine :
+       Zilla Slab (titres, remplace Clarendon) et Montserrat (texte, remplace Gotham) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Notre feuille de style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===================================================
+       EN-TÊTE : logo + menu + bouton billetterie
+       =================================================== -->
+  <header class="site-header">
+    <div class="container header__inner">
+
+      <!-- Logo en texte -->
+      <a href="index.html" class="logo"> <!-- TODO --> 
+        Montségur
+        <span class="logo__subtitle">Site officiel</span>
+      </a>
+
+      <!-- Menu principal -->
+      <nav class="main-nav" aria-label="Menu principal">
+        <ul class="main-nav__list">
+          <li><a href="#">Château et musée</a></li>
+          <li><a href="#">Village</a></li>
+          <li><a href="#">Sentiers</a></li>
+          <li><a href="#">Animations</a></li>
+          <li><a href="#">Vie communale</a></li>
+        </ul>
+      </nav>
+
+      <!-- Bouton mis en avant -->
+      <a href="#" class="btn btn--primary btn--small">Billetterie</a>
+
+    </div>
+  </header>
+
+
+  <!-- Contenu principal (id="contenu" = cible du lien d'évitement) -->
+  <main id="contenu">
+
+    <!-- ===================================================
+         HERO : grande image d'accueil
+         (l'image de fond est définie dans style.css)
+         =================================================== -->
+    <section class="hero">
+
+      <!-- Diaporama de fond : 3 images qui défilent en fondu (CSS seul) -->
+      <div class="hero__slides" aria-hidden="true">
+        <span class="hero__slide hero__slide--1"></span>
+        <span class="hero__slide hero__slide--2"></span>
+        <span class="hero__slide hero__slide--3"></span>
+      </div>
+
+      <div class="container hero__content">
+
+        <!-- Les labels du site, sous forme de petites étiquettes -->
+        <ul class="hero__labels">
+          <li class="tag">Patrimoine mondial UNESCO</li>
+          <li class="tag">Grand Site de France</li>
+          <li class="tag">Grand site d'Occitanie</li>
+        </ul>
+
+        <h1 class="hero__title">Bienvenue à Montségur</h1>
+        <p class="hero__text">
+          La cité majeure du catharisme, inscrite au patrimoine mondial de l'UNESCO.
+        </p>
+
+        <div class="hero__buttons">
+          <a href="#" class="btn btn--primary">Réserver ma visite</a>
+          <a href="#decouvrir" class="btn btn--outline">Découvrir Montségur</a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         INFOS PRATIQUES : accès rapide aux pages utiles
+         =================================================== -->
+    <section class="quick-links" aria-label="Infos pratiques">
+      <div class="container">
+        <ul class="quick-links__list">
+          <li><a href="#" class="quick-links__item">Périodes d'ouverture</a></li>
+          <li><a href="#" class="quick-links__item">Tarifs et dépliants</a></li>
+          <li><a href="#" class="quick-links__item">Accès</a></li>
+          <li><a href="#" class="quick-links__item">Groupes et voyagistes</a></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         UNESCO : texte à gauche, affiche à droite
+         =================================================== -->
+    <section class="section">
+      <div class="container split">
+
+        <div class="split__text">
+          <p class="section__label">Patrimoine mondial</p>
+          <h2 class="section__title">L'Unesco pour notre château&nbsp;! C'est fait&nbsp;!</h2>
+          <p>
+            Ils sont huit. Huit sublimes châteaux campés entre Aude et Ariège
+            inscrits à l'Unesco. De la Cité de Carcassonne au château d'Aguilar
+            en passant par ceux de Lastours, Montségur, Peyrepertuse,
+            Puilaurens, Termes ou encore Quéribus, tous ont en commun une
+            beauté imparable et une histoire exceptionnelle qui leur donnent
+            une valeur universelle évidente.
+          </p>
+          <a href="#" class="link-arrow">En savoir plus</a>
+        </div>
+
+        <figure class="split__image">
+          <img src="images/affiche-unesco.jpg" alt="Affiche de la campagne : les forteresses royales du Languedoc inscrites à l'UNESCO" loading="lazy">
+        </figure>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         DÉCOUVRIR : trois cartes (histoire, village, nature)
+         =================================================== -->
+    <section class="section section--alt" id="decouvrir">
+      <div class="container">
+
+        <header class="section__header">
+          <p class="section__label">Découvrir</p>
+          <h2 class="section__title">Montségur, entre histoire et montagne</h2>
+        </header>
+
+        <div class="card-grid">
+
+          <article class="card">
+            <img class="card__image" src="images/catharisme.jpg" alt="Les ruines du château de Montségur" loading="lazy">
+            <div class="card__body">
+              <h3 class="card__title">Montségur et le Catharisme</h3>
+              <p class="card__text">
+                L'histoire de Montségur et de son château a été établie à partir
+                de documents historiques, notamment les archives de
+                l'Inquisition, et des fouilles archéologiques menées sur le site.
+              </p>
+              <a href="#" class="link-arrow">En savoir plus</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card__image" src="images/village.jpg" alt="Le village de Montségur au pied du pog" loading="lazy">
+            <div class="card__body">
+              <h3 class="card__title">Un village classé</h3>
+              <p class="card__text">
+                En moyenne montagne, Montségur est tourné à la fois vers
+                Lavelanet et le piémont, et vers ses forêts et ses estives.
+                Le village vit du tourisme et de nombreux résidents attachés
+                à la région.
+              </p>
+              <a href="#" class="link-arrow">En savoir plus</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card__image" src="images/nature.jpg" alt="Paysage de montagne du massif du Saint-Barthélemy" loading="lazy">
+            <div class="card__body">
+              <h3 class="card__title">Une nature préservée</h3>
+              <p class="card__text">
+                La réserve naturelle régionale du Massif du Saint-Barthélemy
+                s'étend sur 500&nbsp;ha, sur le versant nord du Pic de Soularac
+                (2&nbsp;368&nbsp;m), plus haut sommet des montagnes nord-pyrénéennes.
+              </p>
+              <a href="#" class="link-arrow">En savoir plus</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         BANDEAU : image panoramique + label Grand Site
+         =================================================== -->
+    <section class="banner">
+      <div class="container banner__content">
+        <p class="section__label section__label--light">Labellisé Grand Site de France</p>
+        <h2 class="banner__title">Le vaisseau de pierre</h2>
+        <p class="banner__text">
+          Perché sur son « pog », le château domine les vallées
+          du Pays d'Olmes et les sommets des Pyrénées.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         ACTUALITÉS : deux articles
+         =================================================== -->
+    <section class="section">
+      <div class="container">
+
+        <header class="section__header">
+          <p class="section__label">Actualités</p>
+          <h2 class="section__title">La vie du village</h2>
+        </header>
+
+        <div class="news-grid">
+
+          <!-- Article 1 -->
+          <article class="news">
+            <img class="news__image" src="images/fondation-patrimoine.jpg" alt="Les élus et partenaires réunis au pied du pog pour la signature de la convention" loading="lazy">
+            <div class="news__body">
+              <!-- <time> indique une date lisible par les machines -->
+              <time class="news__date" datetime="2026-07-03">3 juillet 2026</time>
+              <h3 class="news__title">Signature du partenariat avec la Fondation du Patrimoine</h3>
+              <p>
+                La convention a été signée au pied du pog en présence du maire,
+                Sébastien Mounié, du préfet de l'Ariège, des élus du territoire,
+                de la Fondation du Patrimoine et de nombreux habitants.
+                Ce moment ouvre officiellement la campagne de dons.
+              </p>
+              <ul class="news__links">
+                <li>
+                  <a href="https://www.fondation-patrimoine.org/les-projets/chateau-et-pog-de-montsegur/105349" class="link-arrow" target="_blank" rel="noopener">Faire un don pour le château</a>
+                </li>
+                <li>
+                  <a href="https://www.montsegur.fr/wp-content/uploads/2026/07/DISCOURS-SIGNATURE-FONDATION-PATRIMOINE_MAIRE.pdf" class="link-arrow" target="_blank" rel="noopener">Lire le discours du maire (PDF)</a>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="news">
+            <img class="news__image news__image--logo" src="images/logo-grand-site.png" alt="Logo Grand Site de France Montségur" loading="lazy">
+            <div class="news__body">
+              <time class="news__date" datetime="2026-05-24">24 mai 2026</time>
+              <h3 class="news__title">Fête de la labellisation Grand Site de France</h3>
+              <p>
+                À Lavelanet, lors de la fête de la Montagne, le maire de
+                Montségur a inauguré la labellisation Grand Site de France
+                en présence des élus du territoire. Une journée pour rappeler
+                la place centrale de Montségur, phare du Pays d'Olmes.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         CONTACT : coordonnées de la mairie
+         =================================================== -->
+    <section class="section section--alt" id="contact">
+      <div class="container contact">
+
+        <div class="contact__intro">
+          <p class="section__label">Contact</p>
+          <h2 class="section__title">Venir à Montségur</h2>
+          <p>
+            Une question sur la visite du château ou sur la vie du village ?
+            La mairie et le guide du château vous répondent.
+          </p>
+          <a href="#" class="btn btn--primary">Préparer ma venue</a>
+        </div>
+
+        <!-- <address> est la balise sémantique pour les coordonnées -->
+        <address class="contact__card">
+          <p class="contact__name">Mairie de Montségur</p>
+          <p>32 rue du village<br>09300 Montségur</p>
+          <p>
+            <span class="contact__label">Téléphone</span>
+            <a href="tel:+33561011027">05 61 01 10 27</a>
+          </p>
+          <p>
+            <span class="contact__label">Mairie</span>
+            <a href="mailto:mairie.montsegur@orange.fr">mairie.montsegur@orange.fr</a>
+          </p>
+          <p>
+            <span class="contact__label">Guide du château</span>
+            <a href="mailto:guide.montsegur@orange.fr">guide.montsegur@orange.fr</a>
+          </p>
+        </address>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===================================================
+       PIED DE PAGE
+       =================================================== -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+
+      <!-- Colonne 1 : logo et réseaux sociaux -->
+      <div class="footer__col">
+        <p class="footer__logo">Montségur</p>
+        <p>Village d'Ariège, Grand Site de France.</p>
+        <ul class="footer__list footer__list--inline">
+          <li><a href="https://www.facebook.com/pog.montsegur/" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.instagram.com/montsegur_village/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 2 : liens utiles -->
+      <div class="footer__col">
+        <h2 class="footer__title">Informations</h2>
+        <ul class="footer__list">
+          <li><a href="#">Château et musée</a></li>
+          <li><a href="#">Hébergements et commerces</a></li>
+          <li><a href="#">Conseils municipaux</a></li>
+          <li><a href="#">Mentions légales et crédits</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : partenaires -->
+      <div class="footer__col">
+        <h2 class="footer__title">Partenaires</h2>
+        <ul class="footer__list">
+          <li>Région Occitanie</li>
+          <li>Département de l'Ariège</li>
+          <li>Ariège Pyrénées Tourisme</li>
+          <li>Pays Cathare</li>
+          <li>Communauté de communes du Pays d'Olmes</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="footer__copy">© 2026 Commune de Montségur</p>
+  </footer>
+
+</body>
+</html>

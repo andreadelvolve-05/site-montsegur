@@ -1,0 +1,820 @@
+/* =========================================================
+   FEUILLE DE STYLE – Page d'accueil de Montségur
+
+   Sommaire :
+   1.  Variables (couleurs, polices, arrondis)
+   2.  Base (réinitialisation, typographie)
+   3.  Éléments réutilisables (container, boutons, sections...)
+   4.  En-tête
+   5.  Hero
+   6.  Infos pratiques
+   7.  Bloc UNESCO (texte + image)
+   8.  Cartes « Découvrir »
+   9.  Bandeau
+   10. Actualités
+   11. Contact
+   12. Pied de page
+   13. Responsive (tablette et ordinateur)
+
+   Nommage des classes (méthode BEM simplifiée) :
+   - .bloc            → un composant (ex : .card)
+   - .bloc__element   → une partie du composant (ex : .card__title)
+   - .bloc--variante  → une variante (ex : .btn--primary)
+
+   Méthode « mobile first » : le style de base vise les téléphones,
+   puis on l'adapte aux grands écrans dans la partie 13.
+   ========================================================= */
+
+
+/* --- 1. VARIABLES ---
+   Modifiez une valeur ici : elle change sur toute la page.
+
+   Charte reprise du site d'origine (montsegur.fr) :
+   beige pierre #c0b297, anthracite #231f20, bordeaux #840b0d. */
+:root {
+  /* Tons pierre / roche / beige chaud (fonds et cartes) */
+  --color-stone-light: #f4efe6;  /* beige très clair : fond de page */
+  --color-stone: #e7ddcc;        /* beige roche : sections alternées */
+  --color-stone-deep: #c0b297;   /* beige pierre du site d'origine */
+  --color-white: #fffdf9;        /* blanc cassé chaud : cartes */
+
+  /* Gris foncé / anthracite (textes et structure) */
+  --color-text: #231f20;         /* anthracite : texte principal */
+  --color-text-light: #59524d;   /* gris chaud : texte secondaire */
+  --color-dark: #2b2728;         /* anthracite : en-tête et pied de page */
+
+  /* Couleur d'accent (boutons, liens, sur-titres) */
+  --color-accent: #840b0d;       /* bordeaux du site d'origine */
+  --color-accent-dark: #620809;  /* bordeaux foncé : survol */
+
+  /* Polices proches de celles du site d'origine :
+     Zilla Slab remplace Clarendon, Montserrat remplace Gotham */
+  --font-title: "Zilla Slab", Georgia, serif;
+  --font-text: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Formes */
+  --radius: 14px;
+}
+
+
+/* --- 2. BASE --- */
+
+/* La largeur d'un élément inclut son padding et sa bordure */
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
+
+html {
+  scroll-behavior: smooth;   /* défilement doux vers les ancres (#decouvrir) */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 1rem;           /* 1rem = 16px */
+  line-height: 1.7;          /* interligne aéré */
+  color: var(--color-text);
+  background-color: var(--color-stone-light);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+img {
+  display: block;
+  max-width: 100%;           /* une image ne dépasse jamais son conteneur */
+}
+
+a {
+  color: var(--color-accent);
+}
+
+/* Contour bien visible pour la navigation au clavier */
+a:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Lien d'évitement : caché hors de l'écran, il apparaît au clavier (Tab) */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  background: var(--color-white);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+
+/* --- 3. ÉLÉMENTS RÉUTILISABLES --- */
+
+/* Centre le contenu et limite sa largeur */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section standard */
+.section {
+  padding: 4rem 0;
+}
+
+/* Section avec un fond pierre plus foncé (pour alterner) */
+.section--alt {
+  background-color: var(--color-stone);
+}
+
+/* En-tête de section centré */
+.section__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Petit sur-titre en majuscules au-dessus des titres */
+.section__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.section__label--light {
+  color: var(--color-stone-deep);
+}
+
+.section__title {
+  font-size: 2.2rem;
+}
+
+/* Boutons */
+.btn {
+  padding: 0.85rem 1.6rem;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn--primary {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-accent-dark);
+}
+
+/* Bouton transparent avec bordure blanche (sur image sombre) */
+.btn--outline {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.btn--outline:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn--small {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+/* Lien texte suivi d'une flèche */
+.link-arrow {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ::after ajoute une flèche après le texte, sans toucher au HTML */
+.link-arrow::after {
+  content: " →";
+}
+
+.link-arrow:hover {
+  text-decoration: underline;
+}
+
+/* Petite étiquette arrondie */
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  backdrop-filter: blur(4px);    /* léger flou derrière l'étiquette */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+/* --- 4. EN-TÊTE --- */
+.site-header {
+  background-color: var(--color-dark);
+  padding: 0.9rem 0;
+}
+
+/* Flexbox : logo, menu et bouton côte à côte.
+   flex-wrap permet de passer à la ligne si la place manque. */
+.header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.logo {
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.logo__subtitle {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-text);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-stone-deep);
+}
+
+/* Sur mobile, le menu occupe toute la largeur sous le logo
+   (order: 3 le place après le bouton) */
+.main-nav {
+  order: 3;
+  width: 100%;
+}
+
+.main-nav__list {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  overflow-x: auto;        /* si le menu est trop long : défilement horizontal */
+  white-space: nowrap;     /* empêche les liens de se couper sur 2 lignes */
+}
+
+.main-nav__list a {
+  color: #e7ddcc;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav__list a:hover {
+  color: var(--color-white);
+  border-bottom-color: var(--color-stone-deep);
+}
+
+
+/* --- 5. HERO --- */
+.hero {
+  position: relative;
+  overflow: hidden;               /* masque le zoom des images */
+  isolation: isolate;             /* garde les calques dans la bannière */
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  min-height: 560px;              /* hauteur minimale de la bannière */
+  display: flex;
+  align-items: flex-end;          /* le texte se place en bas */
+  padding: 4rem 0;
+}
+
+/* Dégradé sombre au-dessus des images pour rendre le texte lisible */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(35, 31, 32, 0.85), rgba(35, 31, 32, 0.25));
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;                     /* le texte passe devant les images */
+}
+
+/* Diaporama : les 3 images sont empilées et apparaissent tour à tour.
+   Pour changer une image, remplacez simplement le nom du fichier. */
+.hero__slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: hero-fade 18s ease-in-out infinite;   /* 6s par image */
+}
+
+/* Délais décalés de 6s ; -1.44s = la 1re image est déjà visible au chargement */
+.hero__slide--1 {
+  background-image: url("images/carrousel/pog2-montsegur%20(2).jpg");
+  animation-delay: -1.44s;
+}
+
+.hero__slide--2 {
+  background-image: url("images/carrousel/village.jpg");
+  animation-delay: 4.56s;
+}
+
+.hero__slide--3 {
+  background-image: url("images/carrousel/village_2.jpg");
+  animation-delay: 10.56s;
+}
+
+/* Fondu enchaîné */
+@keyframes hero-fade {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; }
+  33%  { opacity: 1; }
+  41%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.hero__labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.hero__title {
+  font-size: 2.8rem;
+  max-width: 14ch;               /* limite la largeur à ~14 caractères */
+}
+
+.hero__text {
+  font-size: 1.15rem;
+  max-width: 34rem;
+  color: #f4efe6;
+  margin-bottom: 2rem;
+}
+
+.hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+
+/* --- 6. INFOS PRATIQUES --- */
+/* Bandeau beige pierre, comme sur le site d'origine */
+.quick-links {
+  background-color: var(--color-stone-deep);
+}
+
+/* Grille de 2 colonnes sur mobile, liens en forme de pastille (pill) */
+.quick-links__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.85rem 0;
+}
+
+.quick-links__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  color: var(--color-text);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Survol : fond anthracite très léger */
+.quick-links__item:hover {
+  background-color: rgba(35, 31, 32, 0.08);
+}
+
+/* Navigation au clavier : contour net et visible */
+.quick-links__item:focus-visible {
+  outline: 2px solid var(--color-dark);
+  outline-offset: 2px;
+}
+
+/* État actif (page en cours ou clic) : pastille anthracite pleine */
+.quick-links__item[aria-current="page"],
+.quick-links__item:active {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  box-shadow: 0 6px 16px -8px rgba(35, 31, 32, 0.6);
+}
+
+/* Pas d'animation si l'utilisateur la désactive dans son système */
+@media (prefers-reduced-motion: reduce) {
+  .quick-links__item {
+    transition: none;
+  }
+}
+
+
+/* --- 7. BLOC UNESCO (texte + image) --- */
+
+/* Sur mobile : texte puis image, l'un sous l'autre */
+.split {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.split__text p {
+  color: var(--color-text-light);
+  font-size: 1.05rem;
+}
+
+/* <figure> a des marges par défaut : on les retire */
+.split__image {
+  margin: 0;
+}
+
+.split__image img {
+  max-width: 360px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+
+/* --- 8. CARTES « DÉCOUVRIR » --- */
+
+/* CSS Grid : autant de colonnes que possible, de 280px minimum */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;              /* l'image suit les coins arrondis */
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;           /* même proportion pour toutes les images */
+  object-fit: cover;             /* recadre sans déformer */
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;                  /* toutes les cartes ont la même hauteur */
+  padding: 1.5rem;
+}
+
+.card__title {
+  font-size: 1.6rem;
+}
+
+.card__text {
+  color: var(--color-text-light);
+  flex-grow: 1;                  /* pousse le lien en bas de la carte */
+}
+
+
+/* --- 9. BANDEAU --- */
+.banner {
+  background-image:
+    linear-gradient(rgba(35, 31, 32, 0.55), rgba(35, 31, 32, 0.55)),
+    url("images/hero-montsegur.jpg");
+  background-size: cover;
+  background-position: center 40%;   /* cadre le château sur son pog */
+  color: var(--color-white);
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.banner__content {
+  max-width: 700px;
+}
+
+.banner__title {
+  font-size: 2.8rem;
+}
+
+.banner__text {
+  font-size: 1.1rem;
+  color: #f4efe6;
+  margin: 0;
+}
+
+
+/* --- 10. ACTUALITÉS --- */
+.news-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.news {
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.news__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Le logo ne doit pas être recadré : on le centre sur le vert
+   officiel du logo Grand Site de France (seule couleur hors charte) */
+.news__image--logo {
+  object-fit: contain;
+  background-color: #275f38;
+  padding: 2rem;
+}
+
+.news__body {
+  padding: 1.5rem;
+}
+
+.news__body p {
+  color: var(--color-text-light);
+}
+
+.news__date {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.news__title {
+  font-size: 1.6rem;
+}
+
+.news__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news__links li + li {
+  margin-top: 0.4rem;            /* espace entre deux liens */
+}
+
+
+/* --- 11. CONTACT --- */
+.contact {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.contact__intro p {
+  color: var(--color-text-light);
+  margin-bottom: 1.75rem;
+}
+
+/* <address> est en italique par défaut : on le remet droit */
+.contact__card {
+  font-style: normal;
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--color-accent);
+  padding: 2rem;
+}
+
+.contact__card p:last-child {
+  margin-bottom: 0;
+}
+
+.contact__name {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.contact__label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-light);
+}
+
+/* Les longues adresses e-mail peuvent passer à la ligne sur petit écran */
+.contact__card a {
+  overflow-wrap: anywhere;
+}
+
+
+/* --- 12. PIED DE PAGE --- */
+.site-footer {
+  background-color: var(--color-dark);
+  color: #c9bfb0;
+  font-size: 0.9rem;
+  padding-top: 3rem;
+}
+
+.footer__inner {
+  display: grid;
+  gap: 2rem;
+}
+
+.footer__logo {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.25rem;
+}
+
+.footer__title {
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-stone-deep);
+  margin-bottom: 1rem;
+}
+
+.footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__list li + li {
+  margin-top: 0.4rem;
+}
+
+/* Variante : liens côte à côte (réseaux sociaux) */
+.footer__list--inline {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer__list--inline li + li {
+  margin-top: 0;
+}
+
+.site-footer a {
+  color: #e7ddcc;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.footer__copy {
+  margin: 2.5rem 0 0;
+  padding: 1.25rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+
+/* --- 13. RESPONSIVE ---
+   Les « media queries » appliquent ces styles uniquement
+   à partir d'une certaine largeur d'écran. */
+
+/* TABLETTE : à partir de 700px */
+@media (min-width: 700px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .hero__title {
+    font-size: 4rem;
+  }
+
+  /* Infos pratiques : 4 colonnes */
+  .quick-links__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    padding: 1rem 0;
+  }
+
+  .quick-links__item {
+    font-size: 0.9rem;
+  }
+
+  /* Actualités : 2 colonnes */
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Pied de page : 3 colonnes */
+  .footer__inner {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ORDINATEUR : à partir de 1000px */
+@media (min-width: 1000px) {
+  .section {
+    padding: 6rem 0;
+  }
+
+  /* Le menu repasse sur la même ligne que le logo */
+  .main-nav {
+    order: 0;
+    width: auto;
+  }
+
+  .main-nav__list {
+    gap: 2rem;
+    overflow: visible;
+  }
+
+  .hero__title {
+    font-size: 5rem;
+  }
+
+  .hero {
+    min-height: 680px;
+    padding: 6rem 0;
+  }
+
+  .section__title {
+    font-size: 2.8rem;
+  }
+
+  .banner {
+    padding: 9rem 0;
+  }
+
+  .banner__title {
+    font-size: 3.6rem;
+  }
+
+  /* Blocs texte + image : 2 colonnes côte à côte */
+  .split {
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+  }
+
+  .contact {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
